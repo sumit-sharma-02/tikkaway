@@ -92,10 +92,37 @@ const CreateContainer = () => {
           setIsLoading(false);
         }, 4000);
       } else {
+        let iconName;
+        switch (category) {
+          case "drinks":
+            iconName = "BiDrink";
+            break;
+          case "chicken":
+            iconName = "GiChickenOven";
+            break;
+          case "curry":
+            iconName = "TbSoup";
+            break;
+          case "fish":
+            iconName = "FaFish";
+            break;
+          case "fruits":
+            iconName = "GiFruitBowl";
+            break;
+          case "icecreams":
+            iconName = "FaIceCream";
+            break;
+          case "rice":
+            iconName = "GiBowlOfRice";
+            break;
+          default:
+            break;
+        }
         const data = {
           id: `${Date.now()}`,
           title: title,
           imageURL: imageAsset,
+          icon: iconName,
           category: category,
           calories: calories,
           qty: 1,
