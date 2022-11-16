@@ -84,10 +84,10 @@ const Header = () => {
             onClick={showCart}
           >
             <MdShoppingBasket className="text-textColor cursor-pointer text-2xl" />
-            {cartItems && cartItems.length >= 1 && (
+            {cartItems && cartItems.length > 0 && (
               <div className="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center rounded-full bg-cartNumBg">
                 <p className="text-xs text-white font-semibold">
-                  cartItems.length
+                  {cartItems.length}
                 </p>
               </div>
             )}
@@ -137,7 +137,7 @@ const Header = () => {
           {cartItems && cartItems.length >= 1 && (
             <div className="absolute -top-2 -right-2 w-5 h-5 flex items-center justify-center rounded-full bg-cartNumBg">
               <p className="text-xs text-white font-semibold">
-                cartItems.length
+                {cartItems.length}
               </p>
             </div>
           )}

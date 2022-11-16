@@ -6,14 +6,16 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { motion } from "framer-motion";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
+import EmptyCart from "../img/emptyCart.svg";
+import CartItem from "./CartItem";
 
 const CartContainer = () => {
-  const [{ cartShow }, dispatch] = useStateValue();
+  const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
 
   const showCart = () => {
     dispatch({
       type: actionType.SET_CART_SHOW,
-      user: !cartShow,
+      cartShow: !cartShow,
     });
   };
 
@@ -38,67 +40,65 @@ const CartContainer = () => {
           <RiDeleteBin2Line className="text-textColor text-lg" />
         </p>
       </div>
-      <div className="w-full h-full bg-cartBg rounded-t-[2rem] flex flex-col">
-        <div
-          className="w-full h-340 md:h-42 px-6 py-10 flex flex-col gap-3 
-            overflow-y-scroll scrollbar-none"
-        >
+      {cartItems && cartItems.length > 0 ? (
+        <div className="w-full h-full bg-cartBg rounded-t-[2rem] flex flex-col">
           <div
-            className="w-full p-1 px-2 rounded-lg bg-cartItem flex 
-          items-center gap-2"
+            className="w-full h-340 md:h-42 px-6 py-10 flex flex-col gap-3 
+          overflow-y-scroll scrollbar-none"
           >
-            <img
-              className="w-20 h-20 max-w-[60px] rounded-full 
-              object-contain"
-              src="https://firebasestorage.googleapis.com/v0/b/restaurant-app-bceb0.appspot.com/o/Images%2F1668426745025-i3.png?alt=media&token=22197a1a-e442-4db9-8255-db29e585240c"
-            />
-            <div className="flex flex-col gap-2">
-              <p className="text-base text-gray-50">
-                Icecream dssd sd f sd f dsf sd fds
-              </p>
-              <p className="text-sm block text-gray-300 font-semibold">$ 500</p>
-            </div>
-            <div className="group flex items-center gap-2 ml-auto cursor-pointer">
-              <div>
-                <AiOutlineMinus className="text-gray-50" />
-              </div>
-              <p className="w-5 h-5 rounded-sm bg-cartBg text-gray-50 flex items-center justify-center">
-                1
-              </p>
-              <div>
-                <AiOutlinePlus className="text-gray-50" />
-              </div>
-            </div>
+            {cartItems &&
+              cartItems.length > 0 &&
+              cartItems.map((item, index) => (
+                <CartItem key={item.id + "-jfsh-" + index} item={item} />
+              ))}
           </div>
-        </div>
 
-        <div
-          className="w-full flex-1 bg-cartTotal rounded-t-[2rem] 
-        flex flex-col items-center justify-evenly px-8 py-2"
-        >
-          <div className="w-full flex items-center justify-between">
-            <p className="text-gray-400 text-lg">Sub Total</p>
-            <p className="text-gray-400 text-lg">$ 42</p>
-          </div>
-          <div className="w-full flex items-center justify-between">
-            <p className="text-gray-400 text-lg">Delivery</p>
-            <p className="text-gray-400 text-lg">$ 2.5</p>
-          </div>
-          <div className="w-full border-b border-gray-600 my-2"></div>
-          <div className="w-full flex items-center justify-between">
-            <p className="text-gray-200 text-xl font-semibold">Total</p>
-            <p className="text-gray-200 text-xl font-semibold">$ 44.5</p>
-          </div>
-          <motion.button
-            whileTap={{ scale: 0.8 }}
-            type="button"
-            className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400
-          to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg"
+          <div
+            className="w-full flex-1 bg-cartTotal rounded-t-[2rem] 
+      flex flex-col items-center justify-evenly px-8 py-2"
           >
-            Check Out
-          </motion.button>
+            <div className="w-full flex items-center justify-between">
+              <p className="text-gray-400 text-lg">Sub Total</p>
+              <p className="text-gray-400 text-lg">$ 42</p>
+            </div>
+            <div className="w-full flex items-center justify-between">
+              <p className="text-gray-400 text-lg">Delivery</p>
+              <p className="text-gray-400 text-lg">$ 2.5</p>
+            </div>
+            <div className="w-full border-b border-gray-600 my-2"></div>
+            <div className="w-full flex items-center justify-between">
+              <p className="text-gray-200 text-xl font-semibold">Total</p>
+              <p className="text-gray-200 text-xl font-semibold">$ 44.5</p>
+            </div>
+            {user ? (
+              <motion.button
+                whileTap={{ scale: 0.8 }}
+                type="button"
+                className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400
+                to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg"
+              >
+                Check Out
+              </motion.button>
+            ) : (
+              <motion.button
+                whileTap={{ scale: 0.8 }}
+                type="button"
+                className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400
+              to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg"
+              >
+                Login to Check Out
+              </motion.button>
+            )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="w-full h-full flex flex-col items-center justify-center gap-6">
+          <img src={EmptyCart} alt="emptycart" />
+          <p className="text-xl text-textColor font-semibold">
+            Add some items to your cart
+          </p>
+        </div>
+      )}
     </motion.div>
   );
 };
