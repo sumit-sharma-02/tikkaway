@@ -5,9 +5,9 @@ import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 let items = [];
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item, flag, setFlag }) => {
   const [{ cartItems }, dispatch] = useStateValue();
-  const [qty, setQty] = useState(1);
+  const [qty, setQty] = useState(item.qty);
 
   const cartDispatch = () => {
     localStorage.setItem("cartItems", JSON.stringify(items));
@@ -17,29 +17,37 @@ const CartItem = ({ item }) => {
     });
   };
 
-  const updateQty = (action, id) => {
+  const updateQty = (action, id, itemValue) => {
     if (action == "add") {
-      setQty(qty + 1);
+      setQty(itemValue.qty + 1);
       cartItems.map((item) => {
         if (item.id === id) {
           item.qty += 1;
+          setFlag(flag + 1);
         }
       });
       cartDispatch();
     } else if (action == "remove") {
-      setQty(qty - 1);
-      cartItems.map((item) => {
-        if (item.id === id) {
-          item.qty -= 1;
-        }
-      });
-      cartDispatch();
+      if (itemValue.qty == 1) {
+        items = cartItems.filter((item) => item.id !== id);
+        setFlag(flag + 1);
+        cartDispatch();
+      } else {
+        setQty(itemValue.qty - 1);
+        cartItems.map((item) => {
+          if (item.id === id) {
+            item.qty -= 1;
+          }
+        });
+        setFlag(flag + 1);
+        cartDispatch();
+      }
     }
   };
 
   useEffect(() => {
     items = cartItems;
-  }, [items]);
+  }, [item.qty, items]);
 
   return (
     <div className="w-full p-1 px-2 rounded-lg bg-cartItem flex items-center gap-2">
@@ -50,13 +58,13 @@ const CartItem = ({ item }) => {
       <div className="flex flex-col gap-2">
         <p className="text-base text-gray-50">{item.title}</p>
         <p className="text-sm block text-gray-300 font-semibold">
-          $ {item.price * item.qty}
+          $ {parseFloat(item.price * item.qty).toFixed(2)}
         </p>
       </div>
       <div className="group flex items-center gap-2 ml-auto cursor-pointer">
         <motion.div
           whileTap={{ scale: 0.75 }}
-          onClick={() => updateQty("remove", item?.id)}
+          onClick={() => updateQty("remove", item?.id, item)}
         >
           <AiOutlineMinus className="text-gray-50" />
         </motion.div>
@@ -65,7 +73,7 @@ const CartItem = ({ item }) => {
         </p>
         <motion.div
           whileTap={{ scale: 0.75 }}
-          onClick={() => updateQty("add", item?.id)}
+          onClick={() => updateQty("add", item?.id, item)}
         >
           <AiOutlinePlus className="text-gray-50" />
         </motion.div>

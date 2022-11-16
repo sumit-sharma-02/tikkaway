@@ -14,12 +14,36 @@ body {
 
 html,
 body {
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+.font-shadow-into-light {
+  font-family: 'Shadows Into Light', cursive;
+}
+
+::-webkit-scrollbar {
+  width: 18px;
+  height: 18px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ff5700c4;
+  border: 4.5px solid transparent;
+  border-radius: 10px;
+  background-clip: padding-box;
+  opacity: 0.3;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-

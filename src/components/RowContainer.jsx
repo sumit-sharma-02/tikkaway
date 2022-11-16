@@ -60,7 +60,20 @@ const RowContainer = ({ flag, data, scrollValue }) => {
                 whileTap={{ scale: 0.75 }}
                 className="w-8 h-8 rounded-full bg-red-600 flex items-center
                   justify-center cursor-pointer hover:shadow-md -mt-8"
-                onClick={() => setItems([...cartItems, item])}
+                onClick={() => {
+                  let valueCheck = true;
+                  cartItems.map((itemValue) => {
+                    if (item.id === itemValue.id) {
+                      itemValue.qty += 1;
+                      valueCheck = false;
+                    }
+                  });
+                  if (valueCheck) {
+                    setItems([...cartItems, item]);
+                  } else {
+                    setItems([...cartItems]);
+                  }
+                }}
               >
                 <MdShoppingBasket className="text-white" />
               </motion.div>

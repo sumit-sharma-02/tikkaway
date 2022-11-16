@@ -17,7 +17,7 @@ const MainContainer = () => {
     <div className="w-full h-auto flex flex-col items-center justify-center">
       <HomeContainer />
 
-      <section className="w-full my-6">
+      <section className="w-full my-6" id="order">
         <div className="w-full flex items-center justify-between">
           <p
             className="text-2xl font-semibold capitalize
@@ -58,7 +58,7 @@ const MainContainer = () => {
         />
       </section>
 
-      <section className="w-full my-6">
+      <section className="w-full my-6" id="menu">
         <MenuContainer />
       </section>
 

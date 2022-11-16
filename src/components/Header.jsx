@@ -54,8 +54,14 @@ const Header = () => {
       {/* For Tablets and Dekstops */}
       <div className="hidden md:flex w-full h-full items-center justify-between">
         <Link to={"/"} className="flex items-center gap-2">
-          <img className="w-10 object-cover" src={Logo} alt="logo" />
-          <span className="text-headingColor text-xl font-bold">Kiss</span>
+          <img
+            className="w-[60px] h-[60px] object-cover"
+            src={Logo}
+            alt="logo"
+          />
+          <span className="text-headingColor text-3xl font-bold font-shadow-into-light">
+            Tikkaway
+          </span>
         </Link>
 
         <div className="flex items-center gap-8">
@@ -65,18 +71,24 @@ const Header = () => {
             exit={{ opacity: 0, x: 200 }}
             className="flex items-center gap-24 "
           >
-            <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-              Home
+            <li className="text-lg text-textColor hover:text-headingColor cursor-pointer">
+              <a className="no-underline w-full h-full" href="#home">
+                Home
+              </a>
             </li>
-            <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-              Menu
+            <li className="text-lg text-textColor hover:text-headingColor cursor-pointer">
+              <a className="no-underline w-full h-full" href="#menu">
+                Menu
+              </a>
             </li>
-            <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
-              About Us
+            <li className="text-lg text-textColor hover:text-headingColor cursor-pointer">
+              <a className="no-underline w-full h-full" href="#about">
+                About
+              </a>
             </li>
-            <li className="text-lg text-textColor hover:text-headingColor duration-100 transition-all ease-in-out cursor-pointer">
+            {/* <li className="text-lg text-textColor hover:text-headingColor cursor-pointer">
               Service
-            </li>
+            </li> */}
           </motion.ul>
 
           <div

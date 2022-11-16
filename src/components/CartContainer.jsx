@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { RiDeleteBin2Line } from "react-icons/ri";
 import { AiOutlineMinus } from "react-icons/ai";
@@ -12,11 +12,32 @@ import CartItem from "./CartItem";
 const CartContainer = () => {
   const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
 
+  const [flag, setFlag] = useState(1);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {}, [cartItems]);
+
+  useEffect(() => {
+    let total = cartItems.reduce(function (accumulator, item) {
+      return accumulator + item.qty * item.price;
+    }, 0);
+    setTotalPrice(total);
+  }, [totalPrice, flag]);
+
   const showCart = () => {
     dispatch({
       type: actionType.SET_CART_SHOW,
       cartShow: !cartShow,
     });
+  };
+
+  const clearCart = () => {
+    dispatch({
+      type: actionType.SET_CART_ITEMS,
+      cartItems: [],
+    });
+
+    localStorage.setItem("cartItems", JSON.stringify([]));
   };
 
   return (
@@ -32,13 +53,15 @@ const CartContainer = () => {
           <MdOutlineKeyboardBackspace className="text-textColor text-3xl" />
         </motion.div>
         <p className="text-textColor text-lg font-semibold">Cart</p>
-        <p
+        <motion.p
+          whileTap={{ scale: 0.8 }}
           className="flex items-center gap-2 p-1 px-2 my-2 bg-gray-100 
         rounded-md hover:shadow-md cursor-pointer text-textColor text-base"
+          onClick={clearCart}
         >
           Clear
           <RiDeleteBin2Line className="text-textColor text-lg" />
-        </p>
+        </motion.p>
       </div>
       {cartItems && cartItems.length > 0 ? (
         <div className="w-full h-full bg-cartBg rounded-t-[2rem] flex flex-col">
@@ -49,7 +72,12 @@ const CartContainer = () => {
             {cartItems &&
               cartItems.length > 0 &&
               cartItems.map((item, index) => (
-                <CartItem key={item.id + "-jfsh-" + index} item={item} />
+                <CartItem
+                  key={item.id + "-jfsh-" + index}
+                  item={item}
+                  setFlag={setFlag}
+                  flag={flag}
+                />
               ))}
           </div>
 
@@ -59,7 +87,9 @@ const CartContainer = () => {
           >
             <div className="w-full flex items-center justify-between">
               <p className="text-gray-400 text-lg">Sub Total</p>
-              <p className="text-gray-400 text-lg">$ 42</p>
+              <p className="text-gray-400 text-lg">
+                $ {parseFloat(totalPrice).toFixed(2)}
+              </p>
             </div>
             <div className="w-full flex items-center justify-between">
               <p className="text-gray-400 text-lg">Delivery</p>
@@ -68,7 +98,9 @@ const CartContainer = () => {
             <div className="w-full border-b border-gray-600 my-2"></div>
             <div className="w-full flex items-center justify-between">
               <p className="text-gray-200 text-xl font-semibold">Total</p>
-              <p className="text-gray-200 text-xl font-semibold">$ 44.5</p>
+              <p className="text-gray-200 text-xl font-semibold">
+                $ {parseFloat(totalPrice + 2.5).toFixed(2)}
+              </p>
             </div>
             {user ? (
               <motion.button

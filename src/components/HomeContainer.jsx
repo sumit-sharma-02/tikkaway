@@ -2,6 +2,7 @@ import React from "react";
 import Delivery from "../img/delivery.png";
 import HeroBg from "../img/heroBg.png";
 import { homeMenuData } from "../utils/data";
+import { motion } from "framer-motion";
 
 const HomeContainer = () => {
   return (
@@ -24,18 +25,23 @@ const HomeContainer = () => {
         </p>
 
         <p className="text-base text-textColor text-center md:text-left">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+          We are now accepting all inquiries for full buyouts for private events
+          and holiday parties, any day of the week, day or night. Our restaurant
+          can accommodate up to 45 guests and potentially more. We can work with
+          you on the menu, and curate beverages, beer, wine, and sake as well.
+          Please contact us on +1234567890 to inquire!
         </p>
 
-        <button
+        <motion.button
+          whileTap={{ scale: 0.75 }}
           type="button"
-          className="bg-gradient-to-br from-orange-400 to-orange-500 w-full md:w-auto px-4 py-2 rounded-lg hover:shadow-lg transition-all ease-in-out duration-100"
+          className="bg-gradient-to-br from-orange-400 to-orange-500 w-full md:w-auto px-4 py-2 rounded-lg hover:shadow-lg
+          text-orange-100"
         >
-          Order Now
-        </button>
+          <a className="no-underline w-full h-full rounded-lg" href="#order">
+            Order Now
+          </a>
+        </motion.button>
       </div>
       <div className="py-2 flex-1 flex items-center relative">
         <img
