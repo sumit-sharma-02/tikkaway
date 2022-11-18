@@ -32,16 +32,16 @@ const HomeContainer = () => {
           Please contact us on +1234567890 to inquire!
         </p>
 
-        <motion.button
+        <motion.a
           whileTap={{ scale: 0.75 }}
-          type="button"
-          className="bg-gradient-to-br from-orange-400 to-orange-500 w-full md:w-auto px-4 py-2 rounded-lg hover:shadow-lg
+          href="#order"
+          className="no-underline bg-gradient-to-br from-orange-400 to-orange-500 w-full md:w-auto px-4 py-2 rounded-lg hover:shadow-lg
           text-orange-100"
         >
-          <a className="no-underline w-full h-full rounded-lg" href="#order">
-            Order Now
-          </a>
-        </motion.button>
+          {/* <a className="no-underline w-full h-full rounded-lg" href="#order"> */}
+          Order Now
+          {/* </a> */}
+        </motion.a>
       </div>
       <div className="py-2 flex-1 flex items-center relative">
         <img

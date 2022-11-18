@@ -9,8 +9,13 @@ import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import EmptyCart from "../img/emptyCart.svg";
 import CartItem from "./CartItem";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { app } from "../firebase.config";
 
 const CartContainer = () => {
+  const firebaseAuth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
   const [{ cartShow, cartItems, user }, dispatch] = useStateValue();
 
   const [flag, setFlag] = useState(1);
@@ -22,6 +27,18 @@ const CartContainer = () => {
     }, 0);
     setTotalPrice(total);
   }, [totalPrice, flag, cartItems]);
+
+  const login = async () => {
+    const {
+      user: { refreshToken, providerData },
+    } = await signInWithPopup(firebaseAuth, provider);
+    dispatch({
+      type: actionType.SET_USER,
+      user: providerData[0],
+    });
+    localStorage.setItem("user", JSON.stringify(providerData[0]));
+    showCart();
+  };
 
   const showCart = () => {
     dispatch({
@@ -116,6 +133,7 @@ const CartContainer = () => {
                 type="button"
                 className="w-full p-2 rounded-full bg-gradient-to-tr from-orange-400
               to-orange-600 text-gray-50 text-lg my-2 hover:shadow-lg"
+                onClick={login}
               >
                 Login to Check Out
               </motion.button>
