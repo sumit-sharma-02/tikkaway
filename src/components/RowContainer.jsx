@@ -14,21 +14,28 @@ const RowContainer = ({ flag, data, scrollValue }) => {
 
   const [{ cartItems }, dispatch] = useStateValue();
 
-  const addToCart = () => {
-    dispatch({
-      type: actionType.SET_CART_ITEMS,
-      cartItems: items,
-    });
-    localStorage.setItem("cartItems", JSON.stringify(items));
-  };
+  // const addToCart = () => {
+  //   dispatch({
+  //     type: actionType.SET_CART_ITEMS,
+  //     cartItems: items,
+  //   });
+  //   localStorage.setItem("cartItems", JSON.stringify(items));
+  // };
 
   useEffect(() => {
     rowContainer.current.scrollLeft += scrollValue;
   }, [scrollValue]);
 
   useEffect(() => {
+    const addToCart = () => {
+      dispatch({
+        type: actionType.SET_CART_ITEMS,
+        cartItems: items,
+      });
+      localStorage.setItem("cartItems", JSON.stringify(items));
+    };
     addToCart();
-  }, [items]);
+  }, [items, dispatch]);
 
   return (
     <div
@@ -62,7 +69,7 @@ const RowContainer = ({ flag, data, scrollValue }) => {
                   justify-center cursor-pointer hover:shadow-md -mt-8"
                 onClick={() => {
                   let valueCheck = true;
-                  cartItems.map((itemValue) => {
+                  cartItems.forEach((itemValue) => {
                     if (item.id === itemValue.id) {
                       itemValue.qty += 1;
                       valueCheck = false;

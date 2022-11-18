@@ -1,3 +1,4 @@
+/* eslint-disable  no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { GiChickenOven, GiBowlOfRice, GiFruitBowl } from "react-icons/gi";
 import { TbSoup } from "react-icons/tb";

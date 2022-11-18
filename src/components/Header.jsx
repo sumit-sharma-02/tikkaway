@@ -1,3 +1,4 @@
+/* eslint-disable  no-unused-vars */
 import React, { useState } from "react";
 import Logo from "../img/chef1.png";
 import { MdShoppingBasket, MdAdd, MdLogout } from "react-icons/md";

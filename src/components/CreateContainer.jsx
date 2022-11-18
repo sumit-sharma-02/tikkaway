@@ -1,3 +1,4 @@
+/* eslint-disable  no-unused-vars */
 import React, { useState } from "react";
 import Loader from "./Loader";
 import { motion } from "framer-motion";
@@ -272,7 +273,7 @@ const CreateContainer = () => {
                   <div className="relative h-full">
                     <img
                       src={imageAsset}
-                      alt="uploaded image"
+                      alt="uploadedImage"
                       className="w-full h-full object-cover"
                     />
                     <button

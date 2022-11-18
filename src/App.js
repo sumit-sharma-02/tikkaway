@@ -1,3 +1,4 @@
+/* eslint-disable  no-unused-vars */
 import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
@@ -23,7 +24,7 @@ export const App = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  });
 
   useEffect(() => {
     fetchCart();

@@ -1,3 +1,4 @@
+/* eslint-disable  no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
@@ -18,23 +19,23 @@ const CartItem = ({ item, flag, setFlag }) => {
   };
 
   const updateQty = (action, id, itemValue) => {
-    if (action == "add") {
+    if (action === "add") {
       setQty(itemValue.qty + 1);
-      cartItems.map((item) => {
+      cartItems.forEach((item) => {
         if (item.id === id) {
           item.qty += 1;
           setFlag(flag + 1);
         }
       });
       cartDispatch();
-    } else if (action == "remove") {
-      if (itemValue.qty == 1) {
+    } else if (action === "remove") {
+      if (itemValue.qty === 1) {
         items = cartItems.filter((item) => item.id !== id);
         setFlag(flag + 1);
         cartDispatch();
       } else {
         setQty(itemValue.qty - 1);
-        cartItems.map((item) => {
+        cartItems.forEach((item) => {
           if (item.id === id) {
             item.qty -= 1;
           }
@@ -47,13 +48,14 @@ const CartItem = ({ item, flag, setFlag }) => {
 
   useEffect(() => {
     items = cartItems;
-  }, [item.qty, items]);
+  }, [item.qty, cartItems]);
 
   return (
     <div className="w-full p-1 px-2 rounded-lg bg-cartItem flex items-center gap-2">
       <img
         className="w-20 h-20 max-w-[60px] rounded-full object-contain"
         src={item.imageURL}
+        alt=""
       />
       <div className="flex flex-col gap-2">
         <p className="text-base text-gray-50">{item.title}</p>

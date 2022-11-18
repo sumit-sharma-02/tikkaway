@@ -1,3 +1,4 @@
+/* eslint-disable  no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { MdOutlineKeyboardBackspace } from "react-icons/md";
 import { RiDeleteBin2Line } from "react-icons/ri";
@@ -15,14 +16,12 @@ const CartContainer = () => {
   const [flag, setFlag] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
 
-  useEffect(() => {}, [cartItems]);
-
   useEffect(() => {
     let total = cartItems.reduce(function (accumulator, item) {
       return accumulator + item.qty * item.price;
     }, 0);
     setTotalPrice(total);
-  }, [totalPrice, flag]);
+  }, [totalPrice, flag, cartItems]);
 
   const showCart = () => {
     dispatch({
