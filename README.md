@@ -14,9 +14,8 @@
 
 <p align="center"> 
     <br />&#10023;
-    <a href="#Stack">Stack </a>&#10023;
-    <a href="#Quick-Start">Quick Start</a>&#10023;    
-    <a href="https://github.com/sumit-sharma-02/tikkaway/issues">Report Bug</a>&#10023;
+    <a href="#Quick-Start">Quick Start</a>   &#10023;    
+    <a href="https://github.com/sumit-sharma-02/tikkaway/issues">Report Bug</a>   &#10023;
     <a href="#Contact">Author</a>&#10023;
   </p>
 
@@ -55,15 +54,6 @@
     <td><img src="https://user-images.githubusercontent.com/52236473/212076973-d86bfa92-ecb7-42ee-88e7-bacd2d4e03ee.png" alt="new item" /></td>
   </tr>
 </table>
-<br/>
-
-## Stack
-- Create React App
-- React Redux
-- React Router
-- Tailwind
-- Redux Devtools Extension for Chrome
-- Firebase SDK with OAuth authentication
 <br/>
 
 ## Quick Start
@@ -127,3 +117,6 @@ If you want to contact me, you can reach me through below handles.
 [![linkedin](https://img.shields.io/badge/Sumit_Sharma-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/sumitsharma002/)
 [![Github](https://img.shields.io/badge/Sumit_Sharma-20232A?style=for-the-badge&logo=Github&logoColor=white)](https://github.com/sumit-sharma-02/)
 
+## Show your support
+
+Give it a ⭐️ if you like it.
