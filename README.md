@@ -58,7 +58,7 @@
 
 ## Quick Start
 ```shell
-$ git clone https://github.com/sumit-sharma/tikkaway.git
+$ git clone https://github.com/sumit-sharma-02/tikkaway.git
 $ cd tikkaway
 $ npm install
 $ npm start
